@@ -1,14 +1,27 @@
 package main
 
 import (
-	"log"
+	"./db"
 	"fmt"
-	"net/http"
-	"./router"
 )
 
+
+
 func main() {
-	r := router.Router()
+	//r := router.Router()
 	fmt.Println("Starting Meal Plan")
-	log.Fatal(http.ListenAndServe(":8080", r))
+	//log.Fatal(http.ListenAndServe(":8080", r))
+
+	db.Connect()
+
+
+	var email string
+	var password string
+	fmt.Println("Please enter email: ")
+	fmt.Scanln(&email)
+	fmt.Println("Please enter password: ")
+	fmt.Scanln(&password)
+
+	db.Create_User(email, password)
+
 }
